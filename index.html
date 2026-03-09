@@ -24,7 +24,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <title>Research Project Page</title>
+  <title>What Makes an LLM a Good Optimizer? A Trajectory Analysis of LLM-Guided Evolutionary Search </title>
   <!-- <link rel="icon" type="image/x-icon" href="static/images/favicon.ico"> --> 
      <!-- Here: you may change to a favicon! We are using an SVG for faster load times and max quality -->
   <link rel="icon" type="image/svg" href='static/images/icon.svg' />
@@ -65,6 +65,84 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
+<style>
+  /* Citation section styles */
+  #citation .code-container {
+    position: relative;
+    background: #f5f5f5;
+    border-radius: 8px;
+    border: 1px solid #dbdbdb;
+    overflow: hidden;
+  }
+  
+  #citation pre {
+    margin: 0;
+    padding: 1.5rem;
+    padding-right: 5rem;
+    overflow-x: auto;
+    background: transparent;
+  }
+  
+  #citation code {
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  #citation .copy-button {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: #3273dc;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+  }
+  
+  #citation .copy-button:hover {
+    background: #2366d1;
+  }
+  
+  #citation .copy-button.is-success {
+    background: #48c774;
+  }
+  
+  /* Smooth scroll for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Explore link style in Abstract */
+  .explore-link {
+    color: #3273dc;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 2px solid rgba(50, 115, 220, 0.3);
+    padding-bottom: 2px;
+    transition: all 0.25s ease;
+  }
+  
+  .explore-link:hover {
+    color: #2366d1;
+    border-bottom-color: #3273dc;
+    background: linear-gradient(to top, rgba(50, 115, 220, 0.08) 40%, transparent 40%);
+  }
+  
+  .explore-link i {
+    margin-left: 0.25em;
+    transition: transform 0.25s ease;
+  }
+  
+  .explore-link:hover i {
+    transform: translateY(3px);
+  }
+</style>
 
 </head>
 
@@ -75,28 +153,32 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Research Project Page</h1>
+            <h1 class="title is-1 publication-title">What Makes an LLM a Good Optimizer? A Trajectory Analysis of LLM-Guided Evolutionary Search </h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
+                <a href="https://github.com/XINHAO-ZHANG" target="_blank">Xinhao Zhang</a><sup>1</sup>,</span>
                 <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
+                  <a href="https://scholar.google.com/citations?user=lnATWZIAAAAJ&hl=zh-CN" target="_blank">Xi Chen</a><sup>1,2</sup>,</span>
                   <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
+                    <a href="https://lig-membres.imag.fr/portet/home.php" target="_blank">François Portet</a><sup>1</sup>,</span>
                   </span>
+                    <span class="author-block">
+                    <a href="https://peyrardm.github.io" target="_blank">Maxime Peyrard</a><sup>1</sup>
+                    </span>
                   </div>
 
                   <div class="is-size-5 publication-authors">
-                    <span class="author-block">Institution Name<br>Conferance name and year</span>
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
+                    <span class="author-block">Grenoble Computer Science Laboratory, CNRS<sup>1</sup>  Orange Innovation Grenoble<sup>2</sup>
+                      <br>Submission to ACL 2026</span>
+                    <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
                   </div>
 
                   <div class="column has-text-centered">
                     <div class="publication-links">
                          <!-- Arxiv PDF link -->
                       <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        <a href="https://openreview.net/pdf?id=wlHuloNZ9p" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
                         <span class="icon">
                           <i class="fas fa-file-pdf"></i>
@@ -106,7 +188,7 @@
                     </span>
 
                     <!-- Supplementary PDF link -->
-                    <span class="link-block">
+                    <!-- <span class="link-block">
                       <a href="static/pdfs/supplementary_material.pdf" target="_blank"
                       class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
@@ -114,11 +196,11 @@
                       </span>
                       <span>Supplementary</span>
                     </a>
-                  </span>
+                  </span> -->
 
                   <!-- Github link -->
                   <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                    <a href="https://github.com/XINHAO-ZHANG/LLMEvo_Eval" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -128,13 +210,20 @@
                 </span>
 
                 <!-- ArXiv abstract Link -->
-                <span class="link-block">
+                <!-- <span class="link-block">
                   <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="ai ai-arxiv"></i>
                   </span>
-                  <span>arXiv</span>
+                  <span>arXiv</span> -->
+                  <span class="link-block">
+                  <a href="https://huggingface.co/datasets/LivevreXH/evo_llm_trajectories" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-database"></i>
+                    </span>
+                    <span>Dataset</span>
                 </a>
               </span>
             </div>
@@ -147,11 +236,11 @@
 
 
 <!-- Teaser video-->
+<!-- 
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <video poster="" id="tree" autoplay controls muted loop height="100%">
-        <!-- Your video here -->
         <source src="static/videos/banner_video.mp4"
         type="video/mp4">
       </video>
@@ -161,17 +250,23 @@
     </div>
   </div>
 </section>
+-->
 <!-- End teaser video -->
 
 <!-- Paper abstract -->
-<section class="section hero is-light">
+<section class="section hero is-light" id="abstract">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+          <p>Recent work has demonstrated the promise of orchestrating large language models (LLMs) within evolutionary and agentic optimization systems. However, the mechanisms driving these optimization gains remain poorly understood. In this work, we present a large-scale study of LLM-guided evolutionary optimization, collecting optimization trajectories for 15 LLMs across 8 optimization problems. While base problem-solving ability, measured via zero-shot performance, correlates with final optimization outcomes, it explains only part of the variance: models with similar zero-shot capability often induce dramatically different search trajectories and final performance. To explain this gap, we analyze breakthrough dynamics and the geometry of optimization trajectories in the semantic space of candidate solutions. We find that effective LLM optimizers behave as strong local refiners, progressively localizing their search while producing frequent, incremental improvements across generations. In contrast, weaker optimizers exhibit large semantic drift, with occasional large breakthroughs followed by prolonged stagnation, reminiscent of behavior observed in classical metaheuristics. Notably, various measures of solution novelty do not predict final performance; novelty is beneficial only when the search remains sufficiently localized around high-performing regions of the solution space. Our results highlight the importance of trajectory-level evaluation for understanding and improving LLM-based agentic optimization systems, and provide actionable insights for future work on <i>learning to search</i>.
+          </p>
+          <p class="has-text-centered" style="margin-top: 1.5rem; font-size: 1.05rem; color: #4a4a4a;">
+            Curious to see how different LLMs navigate the solution space? 
+            <a href="#trajectory-explorer" class="explore-link">
+              Go straight to explore the trajectories interactively <i class="fas fa-arrow-down" style="font-size: 0.85em;"></i>
+            </a>
           </p>
         </div>
       </div>
@@ -180,35 +275,520 @@
 </section>
 <!-- End paper abstract -->
 
+<!-- Method overview -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Method Overview</h2>
+          <div class="has-text-centered">
+            <img src="static/images/LLM_evo_eval.png" alt="LLM-guided evolutionary optimization framework" style="max-width: 100%; height: auto;">
+          </div>
+          <p class="has-text-justified" style="margin: 0; padding: 1rem 0 0 0; font-size: 1rem; line-height: 1.5;">
+            <strong>LLM-guided evolutionary optimization framework.</strong> 
+            We study LLM optimization across generations (left) and within individual generations (right). 
+            Our evaluation covers four task families: combinatorial optimization (TSP), symbolic regression, 
+            prompt optimization, and heuristic design (online bin packing).
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End method overview -->
+
+<!-- Results -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Experimental Results</h2>
+          <div class="has-text-centered">
+            <img src="static/images/table_result.png" alt="Fitness performance results across different LLMs and tasks" style="max-width: 100%; height: auto;">
+          </div>
+          <p class="has-text-justified" style="margin: 0; padding: 1rem 0 0 0; font-size: 1rem; line-height: 1.5;">
+            <strong>Fitness performance of LLMs across four task families.</strong> 
+            Results show averaged normalized fitness scores across route optimization, prompt optimization, 
+            equation discovery, and heuristic design tasks. Models are ranked by their zero-shot performance, 
+            with background shading indicating improvement over initial populations.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End results -->
+
+<!-- Zero-shot analysis -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Zero-shot vs. Evolutionary Performance</h2>
+          <div class="has-text-centered">
+            <img src="static/images/zero_final_compare.png" alt="Correlation between zero-shot and post-evolution performance" style="max-width: 70%; height: auto;">
+          </div>
+          <p class="has-text-justified" style="margin: 0; padding: 1rem 0 0 0; font-size: 1rem; line-height: 1.5;">
+            <strong>Zero-shot performance vs. post-evolution performance across LLMs.</strong> 
+            While there is a significant correlation (r=0.860, p=3.95e-05) between zero-shot problem-solving ability and final optimization outcomes, 
+            being a strong one-shot problem solver does not necessarily imply being an effective evolutionary search operator. 
+            Models with similar zero-shot capabilities can exhibit dramatically different optimization trajectories and final performance.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End zero-shot analysis -->
+
+<!-- Novelty analysis -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">More Novelty Does Not Guarantee Better Optimization</h2>
+          
+
+          <!-- Second image: good vs bad cases -->
+          <div class="has-text-centered">
+            <img src="static/images/explore_bad_good.png" alt="Comparison of efficient vs overly exploratory search behaviors" style="max-width: 85%; height: auto;">
+            <p class="has-text-justified" style="margin: 0; padding: 1rem 0 0 0; font-size: 1rem; line-height: 1.5;">
+              <strong>Efficient exploration vs. overly exploratory search behaviors.</strong> 
+              Gemini-1.5-Pro (left) demonstrates efficient exploration with sustained improvement and progressive localization. 
+              In contrast, Mistral-7B-Instruct (right) exhibits consistent high novelty exploration but fails to convert 
+              this exploration into fitness gains, illustrating that novelty without proper exploitation leads to poor optimization outcomes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End novelty analysis -->
+
+<!-- Breakthrough rate analysis -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Refinement Rate: Strongest Predictor of Success</h2>
+          <div class="has-text-centered">
+            <img src="static/images/average_refinement_rate_per_model.png" alt="Average local refinement rate per model across different tasks" style="max-width: 85%; height: auto;">
+          </div>
+          <p class="has-text-justified" style="margin: 0; padding: 1rem 0 0 0; font-size: 1rem; line-height: 1.5;">
+            <strong>Refinement rate across LLMs and task families.</strong> 
+            This indicator measures the frequency with which a model produces an offspring that is strictly better than its parent.
+            Regression analysis reveals that average refinement rate is by far the strongest predictor of final performance 
+            (coefficient = 0.548, z = 4.16, p < 0.001), significantly outperforming zero-shot performance as a predictor. 
+            This reinforces our hypothesis that effective LLM optimizers behave as strong local refiners, consistently producing 
+            incremental improvements rather than relying on rare breakthrough events.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End breakthrough rate analysis -->
+
+<!-- Video demonstration -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Geometric Perspective: Distinct Semantic Search Behaviors</h2>
+          <div class="publication-video">
+            <video poster="" id="tsp-evolution" controls loop height="100%">
+              <source src="static/videos/tsp_evolution_simple.mp4" type="video/mp4">
+            </video>
+            <p class="has-text-justified" style="margin: 0; padding: 0.2rem 0 0 0; font-size: 1rem; line-height: 1.4;">
+              <strong>Different optimization trajectories for two LLMs with similar zero-shot performance on TSP-60.</strong> 
+              Each point represents a candidate solution, colored by generation. Gemini-1.5-Pro (left) displays sustained fitness 
+              improvement and progressive localization. Mistral-7B-Instruct (right) maintains high novelty but fails to 
+              exploit it into fitness gains.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End video demonstration -->
+
+<!-- Interactive Trajectory Explorer -->
+<section class="hero is-small" id="trajectory-explorer">
+  <div class="hero-body">
+    <div class="container" style="max-width: 1400px;">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">
+            <i class="fas fa-chart-line"></i> Interactive Trajectory Explorer
+          </h2>
+          <p class="subtitle" style="margin-bottom: 1.5rem;">
+            Explore evolution trajectories across different tasks and models. Compare up to 4 models side-by-side.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Control Panel -->
+      <div class="box" style="margin-bottom: 1.5rem;">
+        <div class="columns is-multiline">
+          <!-- Task Family Selection -->
+          <div class="column is-6">
+            <div class="field">
+              <label class="label"><i class="fas fa-folder"></i> Task Family</label>
+              <div class="buttons has-addons" id="taskFamilyBtns">
+                <button class="button is-primary is-selected" data-family="tsp">
+                  <span class="icon"><i class="fas fa-route"></i></span>
+                  <span>TSP</span>
+                </button>
+                <button class="button" data-family="sr">
+                  <span class="icon"><i class="fas fa-calculator"></i></span>
+                  <span>Symbolic Regression</span>
+                </button>
+                <button class="button" data-family="heuristic">
+                  <span class="icon"><i class="fas fa-boxes"></i></span>
+                  <span>Heuristic Design</span>
+                </button>
+                <button class="button" data-family="prompt">
+                  <span class="icon"><i class="fas fa-comment-dots"></i></span>
+                  <span>Prompt Opt</span>
+                </button>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label"><i class="fas fa-tasks"></i> Subtask</label>
+              <div class="buttons" id="subtaskBtns">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+          </div>
+          
+          <!-- View Type Selection -->
+          <div class="column is-3">
+            <div class="field">
+              <label class="label"><i class="fas fa-eye"></i> View Type</label>
+              <div class="buttons has-addons" id="viewTypeBtns">
+                <button class="button is-info is-selected" data-view="empirical">
+                  <span class="icon"><i class="fas fa-chart-area"></i></span>
+                  <span>Empirical</span>
+                </button>
+                <button class="button" data-view="semantic">
+                  <span class="icon"><i class="fas fa-project-diagram"></i></span>
+                  <span>Semantic</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Selection Info -->
+          <div class="column is-3">
+            <div class="field">
+              <label class="label"><i class="fas fa-info-circle"></i> Selection</label>
+              <div class="notification is-light" style="padding: 0.75rem;">
+                <span id="selectedCountDisplay">0</span> / 8 models selected
+                <button class="button is-small is-danger is-outlined is-pulled-right" id="clearSelectionBtn">
+                  Clear
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <hr>
+        
+        <!-- Model Selection -->
+        <div class="field">
+          <label class="label"><i class="fas fa-robot"></i> Models (select up to 8)</label>
+          <div class="columns is-multiline" id="modelCheckboxes" style="max-height: 200px; overflow-y: auto;">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Plots Grid -->
+      <div class="columns is-multiline" id="plotsGridMain">
+        <!-- Populated dynamically -->
+      </div>
+      
+      <!-- Legend -->
+      <div class="box" style="margin-top: 1rem; background: #f8f9fa;">
+        <div class="columns">
+          <div class="column is-4">
+            <strong><i class="fas fa-chart-area"></i> Empirical View:</strong>
+            <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+              <li>X: Normalized Fitness (quality)</li>
+              <li>Y: Normalized Diversity (novelty)</li>
+            </ul>
+          </div>
+          <div class="column is-4">
+            <strong><i class="fas fa-project-diagram"></i> Semantic View:</strong>
+            <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+              <li>MDS embedding of solution space</li>
+              <li>Point size ∝ Fitness</li>
+            </ul>
+          </div>
+          <div class="column is-4">
+            <strong><i class="fas fa-palette"></i> Color:</strong>
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+              <div style="width: 100px; height: 15px; background: linear-gradient(to right, #440154, #21918c, #fde725); border-radius: 3px;"></div>
+              <span style="font-size: 0.9rem;">Early → Late generation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function() {
+    // Configuration
+    const TASK_FAMILIES = {
+        tsp: { name: 'TSP', subtasks: ['TSP30', 'TSP60'] },
+        sr: { name: 'Symbolic Regression', subtasks: ['oscillator1', 'oscillator2'] },
+        heuristic: { name: 'Heuristic Design', subtasks: ['OBP-OR3', 'OBP-Weibull'] },
+        prompt: { name: 'Prompt Optimization', subtasks: ['Summarization', 'Simplification'] }
+    };
+    
+    const IMAGE_BASE = 'static/images/trajectories';
+    
+    // Default models (fallback)
+    const DEFAULT_MODELS = [
+        'gpt-4o', 'gpt-4o-mini', 'claude-3-5-sonnet', 'claude-3-5-haiku',
+        'gemini-1.5-pro', 'gemini-1.5-flash', 'deepseek-chat', 'qwen2.5-72b',
+        'llama-3.1-70b', 'llama-3.1-8b', 'mistral-large', 'gemma-2-27b',
+        'yi-large', 'glm-4-plus', 'ernie-4.0'
+    ];
+    
+    // State
+    let state = {
+        taskFamily: 'tsp',
+        subtask: 'TSP30',
+        viewType: 'empirical',
+        selectedModels: [],
+        metadata: null
+    };
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', async () => {
+        await loadMetadata();
+        setupEventListeners();
+        updateSubtasks();
+        updateModels();
+        updatePlots();
+    });
+    
+    async function loadMetadata() {
+        try {
+            const resp = await fetch(`${IMAGE_BASE}/metadata.json`);
+            if (resp.ok) state.metadata = await resp.json();
+        } catch (e) {
+            console.log('Using default models');
+        }
+    }
+    
+    function getModels() {
+        if (state.metadata && state.metadata.models[state.subtask]) {
+            return state.metadata.models[state.subtask];
+        }
+        return DEFAULT_MODELS.map(m => ({ name: m, safe_name: m.replace(/[^a-zA-Z0-9\-_.]/g, '_') }));
+    }
+    
+    function setupEventListeners() {
+        // Task family buttons
+        document.querySelectorAll('#taskFamilyBtns button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#taskFamilyBtns button').forEach(b => {
+                    b.classList.remove('is-primary', 'is-selected');
+                });
+                btn.classList.add('is-primary', 'is-selected');
+                state.taskFamily = btn.dataset.family;
+                state.subtask = TASK_FAMILIES[state.taskFamily].subtasks[0];
+                state.selectedModels = [];
+                updateSubtasks();
+                updateModels();
+                updatePlots();
+            });
+        });
+        
+        // View type buttons
+        document.querySelectorAll('#viewTypeBtns button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#viewTypeBtns button').forEach(b => {
+                    b.classList.remove('is-info', 'is-selected');
+                });
+                btn.classList.add('is-info', 'is-selected');
+                state.viewType = btn.dataset.view;
+                updatePlots();
+            });
+        });
+        
+        // Clear selection
+        document.getElementById('clearSelectionBtn').addEventListener('click', () => {
+            state.selectedModels = [];
+            updateModels();
+            updatePlots();
+        });
+    }
+    
+    function updateSubtasks() {
+        const container = document.getElementById('subtaskBtns');
+        const subtasks = TASK_FAMILIES[state.taskFamily].subtasks;
+        container.innerHTML = subtasks.map(st => `
+            <button class="button ${st === state.subtask ? 'is-primary is-selected' : ''}" data-subtask="${st}">
+                ${st}
+            </button>
+        `).join('');
+        
+        container.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                state.subtask = btn.dataset.subtask;
+                state.selectedModels = [];
+                updateSubtasks();
+                updateModels();
+                updatePlots();
+            });
+        });
+    }
+    
+    function updateModels() {
+        const container = document.getElementById('modelCheckboxes');
+        let models = getModels();
+        
+        // 按模型名称排序，保持一致的顺序
+        models.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+        
+        container.innerHTML = models.map(m => {
+            const isSelected = state.selectedModels.includes(m.safe_name);
+            const isDisabled = !isSelected && state.selectedModels.length >= 8;
+            return `
+                <div class="column is-3">
+                    <label class="checkbox" style="display: flex; align-items: center; gap: 0.5rem; ${isDisabled ? 'opacity: 0.5;' : ''}">
+                        <input type="checkbox" value="${m.safe_name}" 
+                               ${isSelected ? 'checked' : ''} 
+                               ${isDisabled ? 'disabled' : ''}>
+                        <span style="font-size: 0.9rem;">${m.name}</span>
+                    </label>
+                </div>
+            `;
+        }).join('');
+        
+        container.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            cb.addEventListener('change', (e) => {
+                if (e.target.checked && state.selectedModels.length < 8) {
+                    state.selectedModels.push(e.target.value);
+                } else if (!e.target.checked) {
+                    state.selectedModels = state.selectedModels.filter(m => m !== e.target.value);
+                }
+                updateModels();
+                updatePlots();
+            });
+        });
+        
+        document.getElementById('selectedCountDisplay').textContent = state.selectedModels.length;
+    }
+    
+    function updatePlots() {
+        const container = document.getElementById('plotsGridMain');
+        
+        if (state.selectedModels.length === 0) {
+            container.innerHTML = `
+                <div class="column is-12">
+                    <div class="notification is-light has-text-centered">
+                        <span class="icon is-large"><i class="fas fa-hand-pointer fa-2x"></i></span>
+                        <p style="margin-top: 1rem;">Select models above to view trajectories</p>
+                    </div>
+                </div>
+            `;
+            return;
+        }
+        
+        const models = getModels();
+        const viewLabel = state.viewType === 'empirical' ? 'Fitness vs Diversity' : 'MDS Embedding';
+        
+        // 根据选择数量动态调整列宽：1-2个用is-6，3-4个用is-4，5-8个用is-3
+        const colClass = state.selectedModels.length <= 2 ? 'is-6' : 
+                         state.selectedModels.length <= 4 ? 'is-4' : 'is-3';
+        
+        container.innerHTML = state.selectedModels.map(safeName => {
+            const model = models.find(m => m.safe_name === safeName);
+            const name = model ? model.name : safeName;
+            return `
+                <div class="column ${colClass}">
+                    <div class="card">
+                        <header class="card-header" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                            <p class="card-header-title" style="color: white; font-size: 0.85rem;">
+                                ${name}
+                                <span class="tag is-light is-pulled-right" style="margin-left: auto; font-size: 0.7rem;">${viewLabel}</span>
+                            </p>
+                        </header>
+                        <div class="card-image" id="plot-main-${safeName}" style="min-height: 250px; display: flex; align-items: center; justify-content: center; background: #fafafa;">
+                            <span class="icon is-large"><i class="fas fa-spinner fa-spin fa-2x"></i></span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        
+        // Load images
+        state.selectedModels.forEach(safeName => {
+            const imgPath = `${IMAGE_BASE}/${state.viewType}/${state.subtask}_${safeName}.png`;
+            const container = document.getElementById(`plot-main-${safeName}`);
+            
+            const img = new Image();
+            img.onload = () => {
+                container.innerHTML = '';
+                img.style.maxWidth = '100%';
+                img.style.padding = '1rem';
+                container.appendChild(img);
+            };
+            img.onerror = () => {
+                container.innerHTML = `
+                    <div class="has-text-centered has-text-danger">
+                        <span class="icon"><i class="fas fa-exclamation-triangle"></i></span>
+                        <p>Image not found</p>
+                        <small>${state.subtask}_${safeName}.png</small>
+                    </div>
+                `;
+            };
+            img.src = imgPath;
+        });
+    }
+})();
+</script>
+<!-- End Interactive Trajectory Explorer -->
 
 <!-- Image carousel -->
+<!-- 
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
        <div class="item">
-        <!-- Your image here -->
+
         <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
           First image description.
         </h2>
       </div>
       <div class="item">
-        <!-- Your image here -->
         <img src="static/images/carousel2.jpg" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
           Second image description.
         </h2>
       </div>
       <div class="item">
-        <!-- Your image here -->
         <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
          Third image description.
        </h2>
      </div>
      <div class="item">
-      <!-- Your image here -->
       <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
       <h2 class="subtitle has-text-centered">
         Fourth image description.
@@ -218,10 +798,12 @@
 </div>
 </div>
 </section>
+-->
 <!-- End image carousel -->
 
 
 <!-- Embedded Google Slides -->
+<!-- 
 <section class="google-slides-section">
   <div class="google-slides-container">
     <h2 class="title is-2 has-text-centered mb-6">Google Slides</h2>
@@ -230,20 +812,20 @@
     </div>
   </div>
 </section>
+-->
 <!-- End embedded Google Slides -->
 
 
 <!-- Youtube video -->
+<!-- 
 <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
-      <!-- Paper video. -->
       <h2 class="title is-3">Video Presentation</h2>
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           
           <div class="publication-video">
-            <!-- Youtube embed code here -->
             <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
         </div>
@@ -251,9 +833,11 @@
     </div>
   </div>
 </section>
+-->
 <!-- End youtube video -->
 
 <!-- Math -->
+<!-- 
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Math</h2>
@@ -267,9 +851,11 @@
     </div>
   </div>
 </section>
+-->
 <!-- End math -->
 
 <!-- Video carousel -->
+<!-- 
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
@@ -277,21 +863,19 @@
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-video1">
           <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
+
             <source src="static/videos/carousel1.mp4"
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video2">
           <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
             <source src="static/videos/carousel2.mp4"
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
           <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
             <source src="static/videos/carousel3.mp4"
             type="video/mp4">
           </video>
@@ -300,10 +884,12 @@
     </div>
   </div>
 </section>
+-->
 <!-- End video carousel -->
 
 
 <!-- Code Cell with syntax highlighting + copy to clipboard -->
+<!-- 
 <section class="section" id="Code">
   <div class="container is-max-desktop content">
     <h2 class="title">Example Code</h2>
@@ -329,6 +915,7 @@ def foo(a):
     </div>
   </div>
 </section>
+-->
 <!-- End code cell -->
 
 
@@ -336,47 +923,68 @@ def foo(a):
 
 
 <!-- Paper poster -->
-<section class="hero is-small is-light">
+<section class="hero is-small is-light" id="poster">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
+      <h2 class="title is-3 has-text-centered">Poster</h2>
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <div class="box" style="padding: 0; overflow: hidden;">
+            <iframe src="static/pdfs/poster.pdf" width="100%" height="700" style="border: none;">
+            </iframe>
+          </div>
+          <div class="has-text-centered" style="margin-top: 1rem;">
+            <a href="static/pdfs/poster.pdf" class="button is-link is-outlined" download>
+              <span class="icon"><i class="fas fa-download"></i></span>
+              <span>Download Poster (PDF)</span>
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
-<!--End paper poster -->
-
-
-<!-- BibText citation + copy to clipboard -->
-<section class="section" id="Code">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <div class="code-container">
-      <pre><code class="code-content language-text">@inproceedings{ai4co2024researchwebsitetemplate,
-    title={AI4CO Research Website Template},
-    author={AI4CO},
-    booktitle={Github}},
-    year={2024},
-    url={https://github.com/ai4co},
-}</code></pre>
-      <button class="copy-button" aria-label="Copy to clipboard">
-        <svg class="copy-icon" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
-        </svg>
-        <svg class="checkmark-icon" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
-        </svg>
-      </button>
-      <div class="copy-tooltip">Copy to clipboard</div>
     </div>
   </div>
 </section>
-    
+<!--End paper poster -->
+
+
+<!-- BibTeX citation -->
+<section class="section" id="citation">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 has-text-centered">Citation</h2>
+    <p class="has-text-centered" style="margin-bottom: 1.5rem;">
+      If you find our work useful, please consider citing:
+    </p>
+    <div class="code-container">
+      <pre><code class="code-content language-text" id="bibtex-code">@article{trajectory2026llm,
+    title={What Makes an LLM a Good Optimizer? A Trajectory Analysis of LLM-Guided Evolutionary Search},
+    author={Xinhao Zhang and Xi Chen and François Portet and Maxime Peyrard},
+    journal={Submission to ACL2026},
+    year={2026},
+    url={https://your-project-url.github.io},
+}</code></pre>
+      <button class="copy-button" onclick="copyBibtex()" aria-label="Copy to clipboard">
+        <span class="icon"><i class="fas fa-copy"></i></span>
+        <span>Copy</span>
+      </button>
+    </div>
+  </div>
 </section>
-<!--End BibTex citation -->
+<script>
+function copyBibtex() {
+    const code = document.getElementById('bibtex-code').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+        const btn = document.querySelector('.copy-button');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<span class="icon"><i class="fas fa-check"></i></span><span>Copied!</span>';
+        btn.classList.add('is-success');
+        setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.classList.remove('is-success');
+        }, 2000);
+    });
+}
+</script>
+<!--End BibTeX citation -->
 
 
   <footer class="footer">

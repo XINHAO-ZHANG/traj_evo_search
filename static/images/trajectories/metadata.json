@@ -1,0 +1,524 @@
+{
+  "subtasks": [
+    "TSP30",
+    "TSP60",
+    "oscillator1",
+    "oscillator2",
+    "OBP-OR3",
+    "OBP-Weibull",
+    "Summarization",
+    "Simplification"
+  ],
+  "task_families": {
+    "tsp": [
+      "TSP30",
+      "TSP60"
+    ],
+    "sr": [
+      "oscillator1",
+      "oscillator2"
+    ],
+    "heuristic": [
+      "OBP-OR3",
+      "OBP-Weibull"
+    ],
+    "prompt": [
+      "Summarization",
+      "Simplification"
+    ]
+  },
+  "models": {
+    "TSP30": [
+      {
+        "name": "deepseek-v3-chat",
+        "safe_name": "deepseek-v3-chat"
+      },
+      {
+        "name": "gpt-4o",
+        "safe_name": "gpt-4o"
+      },
+      {
+        "name": "meta-llama-3.2-1b-instruct",
+        "safe_name": "meta-llama-3.2-1b-instruct"
+      },
+      {
+        "name": "meta-llama-3.1-70b-instruct",
+        "safe_name": "meta-llama-3.1-70b-instruct"
+      },
+      {
+        "name": "gemini-1.5-pro",
+        "safe_name": "gemini-1.5-pro"
+      },
+      {
+        "name": "mistral-large",
+        "safe_name": "mistral-large"
+      },
+      {
+        "name": "mistral-magistral-small",
+        "safe_name": "mistral-magistral-small"
+      },
+      {
+        "name": "gpt-4o-mini",
+        "safe_name": "gpt-4o-mini"
+      },
+      {
+        "name": "gemini-1.5-flash",
+        "safe_name": "gemini-1.5-flash"
+      },
+      {
+        "name": "meta-llama-3.1-8b-instrcut",
+        "safe_name": "meta-llama-3.1-8b-instrcut"
+      },
+      {
+        "name": "mistral-7b-instruct",
+        "safe_name": "mistral-7b-instruct"
+      },
+      {
+        "name": "gemma-3n-4eb",
+        "safe_name": "gemma-3n-4eb"
+      },
+      {
+        "name": "mistral-24b-instrcut",
+        "safe_name": "mistral-24b-instrcut"
+      },
+      {
+        "name": "gpt-3.5-turbo",
+        "safe_name": "gpt-3.5-turbo"
+      },
+      {
+        "name": "meta-llama-3.2-3b-instruct",
+        "safe_name": "meta-llama-3.2-3b-instruct"
+      }
+    ],
+    "TSP60": [
+      {
+        "name": "gemma-3n-e4b",
+        "safe_name": "gemma-3n-e4b"
+      },
+      {
+        "name": "deepseek-v3-chat",
+        "safe_name": "deepseek-v3-chat"
+      },
+      {
+        "name": "gpt-4o",
+        "safe_name": "gpt-4o"
+      },
+      {
+        "name": "gemini-1.5",
+        "safe_name": "gemini-1.5"
+      },
+      {
+        "name": "meta-llama-3.2-1b-instruct",
+        "safe_name": "meta-llama-3.2-1b-instruct"
+      },
+      {
+        "name": "meta-llama-3.1-70b-instruct",
+        "safe_name": "meta-llama-3.1-70b-instruct"
+      },
+      {
+        "name": "mistral-24b-instruct",
+        "safe_name": "mistral-24b-instruct"
+      },
+      {
+        "name": "mistral-large",
+        "safe_name": "mistral-large"
+      },
+      {
+        "name": "mistral-magistral-small",
+        "safe_name": "mistral-magistral-small"
+      },
+      {
+        "name": "meta-llama-3.1-8b-instruct",
+        "safe_name": "meta-llama-3.1-8b-instruct"
+      },
+      {
+        "name": "gpt-4o-mini",
+        "safe_name": "gpt-4o-mini"
+      },
+      {
+        "name": "gemini-1.5-flash",
+        "safe_name": "gemini-1.5-flash"
+      },
+      {
+        "name": "mistral-7b-instruct",
+        "safe_name": "mistral-7b-instruct"
+      },
+      {
+        "name": "meta-llama-3.2-3b-instruct",
+        "safe_name": "meta-llama-3.2-3b-instruct"
+      }
+    ],
+    "oscillator1": [
+      {
+        "name": "gemma-3n-e4b",
+        "safe_name": "gemma-3n-e4b"
+      },
+      {
+        "name": "deepseek-v3-chat",
+        "safe_name": "deepseek-v3-chat"
+      },
+      {
+        "name": "gpt-4o",
+        "safe_name": "gpt-4o"
+      },
+      {
+        "name": "meta-llama-3.2-1b-instruct",
+        "safe_name": "meta-llama-3.2-1b-instruct"
+      },
+      {
+        "name": "meta-llama-3.1-70b-instruct",
+        "safe_name": "meta-llama-3.1-70b-instruct"
+      },
+      {
+        "name": "gemini-1.5-pro",
+        "safe_name": "gemini-1.5-pro"
+      },
+      {
+        "name": "mistral-24b-instruct",
+        "safe_name": "mistral-24b-instruct"
+      },
+      {
+        "name": "mistral-large",
+        "safe_name": "mistral-large"
+      },
+      {
+        "name": "mistral-magistral-small",
+        "safe_name": "mistral-magistral-small"
+      },
+      {
+        "name": "meta-llama-3.1-8b-instruct",
+        "safe_name": "meta-llama-3.1-8b-instruct"
+      },
+      {
+        "name": "gpt-4o-mini",
+        "safe_name": "gpt-4o-mini"
+      },
+      {
+        "name": "gemini-1.5-flash",
+        "safe_name": "gemini-1.5-flash"
+      },
+      {
+        "name": "mistral-7b-instruct",
+        "safe_name": "mistral-7b-instruct"
+      },
+      {
+        "name": "gpt-3.5-turbo",
+        "safe_name": "gpt-3.5-turbo"
+      },
+      {
+        "name": "meta-llama-3.2-3b-instruct",
+        "safe_name": "meta-llama-3.2-3b-instruct"
+      }
+    ],
+    "oscillator2": [
+      {
+        "name": "gemma-3n-e4b",
+        "safe_name": "gemma-3n-e4b"
+      },
+      {
+        "name": "deepseek-v3-chat",
+        "safe_name": "deepseek-v3-chat"
+      },
+      {
+        "name": "gpt-4o",
+        "safe_name": "gpt-4o"
+      },
+      {
+        "name": "meta-llama-3.2-1b-instruct",
+        "safe_name": "meta-llama-3.2-1b-instruct"
+      },
+      {
+        "name": "meta-llama-3.1-70b-instruct",
+        "safe_name": "meta-llama-3.1-70b-instruct"
+      },
+      {
+        "name": "gemini-1.5-pro",
+        "safe_name": "gemini-1.5-pro"
+      },
+      {
+        "name": "mistral-24b-instruct",
+        "safe_name": "mistral-24b-instruct"
+      },
+      {
+        "name": "mistral-large",
+        "safe_name": "mistral-large"
+      },
+      {
+        "name": "mistral-magistral-small",
+        "safe_name": "mistral-magistral-small"
+      },
+      {
+        "name": "meta-llama-3.1-8b-instruct",
+        "safe_name": "meta-llama-3.1-8b-instruct"
+      },
+      {
+        "name": "gpt-4o-mini",
+        "safe_name": "gpt-4o-mini"
+      },
+      {
+        "name": "gemini-1.5-flash",
+        "safe_name": "gemini-1.5-flash"
+      },
+      {
+        "name": "mistral-7b-instruct",
+        "safe_name": "mistral-7b-instruct"
+      },
+      {
+        "name": "gpt-3.5-turbo",
+        "safe_name": "gpt-3.5-turbo"
+      },
+      {
+        "name": "meta-llama-3.2-3b-instruct",
+        "safe_name": "meta-llama-3.2-3b-instruct"
+      }
+    ],
+    "OBP-OR3": [
+      {
+        "name": "gemma-3n-e4b",
+        "safe_name": "gemma-3n-e4b"
+      },
+      {
+        "name": "deepseek-v3-chat",
+        "safe_name": "deepseek-v3-chat"
+      },
+      {
+        "name": "gpt-4o",
+        "safe_name": "gpt-4o"
+      },
+      {
+        "name": "meta-llama-3.2-1b-instruct",
+        "safe_name": "meta-llama-3.2-1b-instruct"
+      },
+      {
+        "name": "meta-llama-3.1-70b-instruct",
+        "safe_name": "meta-llama-3.1-70b-instruct"
+      },
+      {
+        "name": "gemini-1.5-pro",
+        "safe_name": "gemini-1.5-pro"
+      },
+      {
+        "name": "mistral-24b-instruct",
+        "safe_name": "mistral-24b-instruct"
+      },
+      {
+        "name": "mistral-large",
+        "safe_name": "mistral-large"
+      },
+      {
+        "name": "mistral-magistral-small",
+        "safe_name": "mistral-magistral-small"
+      },
+      {
+        "name": "meta-llama-3.1-8b-instruct",
+        "safe_name": "meta-llama-3.1-8b-instruct"
+      },
+      {
+        "name": "gpt-4o-mini",
+        "safe_name": "gpt-4o-mini"
+      },
+      {
+        "name": "gemini-1.5-flash",
+        "safe_name": "gemini-1.5-flash"
+      },
+      {
+        "name": "mistral-7b-instruct",
+        "safe_name": "mistral-7b-instruct"
+      },
+      {
+        "name": "gpt-3.5-turbo",
+        "safe_name": "gpt-3.5-turbo"
+      },
+      {
+        "name": "meta-llama-3.2-3b-instruct",
+        "safe_name": "meta-llama-3.2-3b-instruct"
+      }
+    ],
+    "OBP-Weibull": [
+      {
+        "name": "deepseek-v3-chat",
+        "safe_name": "deepseek-v3-chat"
+      },
+      {
+        "name": "gpt-4o",
+        "safe_name": "gpt-4o"
+      },
+      {
+        "name": "gemma-3n-4b",
+        "safe_name": "gemma-3n-4b"
+      },
+      {
+        "name": "meta-llama-3.2-1b-instruct",
+        "safe_name": "meta-llama-3.2-1b-instruct"
+      },
+      {
+        "name": "meta-llama-3.1-70b-instruct",
+        "safe_name": "meta-llama-3.1-70b-instruct"
+      },
+      {
+        "name": "gemini-1.5-pro",
+        "safe_name": "gemini-1.5-pro"
+      },
+      {
+        "name": "mistral-24b-instruct",
+        "safe_name": "mistral-24b-instruct"
+      },
+      {
+        "name": "mistral-large",
+        "safe_name": "mistral-large"
+      },
+      {
+        "name": "mistral-magistral-small",
+        "safe_name": "mistral-magistral-small"
+      },
+      {
+        "name": "meta-llama-3.1-8b-instruct",
+        "safe_name": "meta-llama-3.1-8b-instruct"
+      },
+      {
+        "name": "gpt-4o-mini",
+        "safe_name": "gpt-4o-mini"
+      },
+      {
+        "name": "gemini-1.5-flash",
+        "safe_name": "gemini-1.5-flash"
+      },
+      {
+        "name": "mistral-7b-instruct",
+        "safe_name": "mistral-7b-instruct"
+      },
+      {
+        "name": "gpt-3.5-turbo",
+        "safe_name": "gpt-3.5-turbo"
+      },
+      {
+        "name": "meta-llama-3.2-3b-instruct",
+        "safe_name": "meta-llama-3.2-3b-instruct"
+      }
+    ],
+    "Summarization": [
+      {
+        "name": "llama-3.1-70b-instruct",
+        "safe_name": "llama-3.1-70b-instruct"
+      },
+      {
+        "name": "llama-3.1-8b-instruct",
+        "safe_name": "llama-3.1-8b-instruct"
+      },
+      {
+        "name": "deepseek-v3-chat",
+        "safe_name": "deepseek-v3-chat"
+      },
+      {
+        "name": "gpt-4o",
+        "safe_name": "gpt-4o"
+      },
+      {
+        "name": "gemma-3n-4b",
+        "safe_name": "gemma-3n-4b"
+      },
+      {
+        "name": "meta-llama-3.2-1b-instruct",
+        "safe_name": "meta-llama-3.2-1b-instruct"
+      },
+      {
+        "name": "llama-3.2-3b-instruct",
+        "safe_name": "llama-3.2-3b-instruct"
+      },
+      {
+        "name": "gemini-1.5-pro",
+        "safe_name": "gemini-1.5-pro"
+      },
+      {
+        "name": "mistral-24b-instruct",
+        "safe_name": "mistral-24b-instruct"
+      },
+      {
+        "name": "mistral-large",
+        "safe_name": "mistral-large"
+      },
+      {
+        "name": "mistral-magistral-small",
+        "safe_name": "mistral-magistral-small"
+      },
+      {
+        "name": "gpt-4o-mini",
+        "safe_name": "gpt-4o-mini"
+      },
+      {
+        "name": "gemini-1.5-flash",
+        "safe_name": "gemini-1.5-flash"
+      },
+      {
+        "name": "mistral-7b-instruct",
+        "safe_name": "mistral-7b-instruct"
+      },
+      {
+        "name": "gpt-3.5-turbo",
+        "safe_name": "gpt-3.5-turbo"
+      }
+    ],
+    "Simplification": [
+      {
+        "name": "gemma-3n-e4b",
+        "safe_name": "gemma-3n-e4b"
+      },
+      {
+        "name": "llama-3.1-70b-instruct",
+        "safe_name": "llama-3.1-70b-instruct"
+      },
+      {
+        "name": "llama-3.1-8b-instruct",
+        "safe_name": "llama-3.1-8b-instruct"
+      },
+      {
+        "name": "deepseek-v3-chat",
+        "safe_name": "deepseek-v3-chat"
+      },
+      {
+        "name": "gpt-4o",
+        "safe_name": "gpt-4o"
+      },
+      {
+        "name": "meta-llama-3.2-1b-instruct",
+        "safe_name": "meta-llama-3.2-1b-instruct"
+      },
+      {
+        "name": "llama-3.2-3b-instruct",
+        "safe_name": "llama-3.2-3b-instruct"
+      },
+      {
+        "name": "gemini-1.5-pro",
+        "safe_name": "gemini-1.5-pro"
+      },
+      {
+        "name": "mistral-24b-instruct",
+        "safe_name": "mistral-24b-instruct"
+      },
+      {
+        "name": "mistral-large",
+        "safe_name": "mistral-large"
+      },
+      {
+        "name": "mistral-magistral-small",
+        "safe_name": "mistral-magistral-small"
+      },
+      {
+        "name": "gpt-4o-mini",
+        "safe_name": "gpt-4o-mini"
+      },
+      {
+        "name": "gemini-1.5-flash",
+        "safe_name": "gemini-1.5-flash"
+      },
+      {
+        "name": "mistral-7b-instruct",
+        "safe_name": "mistral-7b-instruct"
+      },
+      {
+        "name": "gpt-3.5-turbo",
+        "safe_name": "gpt-3.5-turbo"
+      }
+    ]
+  }
+}

@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trajectory Explorer - LLM Evolution</title>
+    <link rel="stylesheet" href="css/bulma.min.css">
+    <link rel="stylesheet" href="css/fontawesome.all.min.css">
+    <style>
+        :root {
+            --primary-color: #3273dc;
+            --secondary-color: #363636;
+            --background-light: #f5f5f5;
+            --border-color: #dbdbdb;
+        }
+
+        body {
+            font-family: 'Google Sans', 'Noto Sans', sans-serif;
+            background-color: var(--background-light);
+        }
+
+        .explorer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .explorer-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .explorer-header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .explorer-header p {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .control-panel {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .control-row {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .control-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .model-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 0.5rem;
+            max-height: 250px;
+            overflow-y: auto;
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: #fafafa;
+        }
+
+        .model-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .model-checkbox:hover {
+            background-color: #eee;
+        }
+
+        .model-checkbox input {
+            cursor: pointer;
+        }
+
+        .model-checkbox.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .view-toggle button {
+            flex: 1;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-color);
+            background: white;
+            color: var(--primary-color);
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .view-toggle button.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .view-toggle button:hover:not(.active) {
+            background: #f0f7ff;
+        }
+
+        .plots-container {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .plots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .plot-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fafafa;
+        }
+
+        .plot-card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.75rem 1rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .plot-card-header .view-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            background: rgba(255,255,255,0.2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .plot-image-container {
+            padding: 1rem;
+            text-align: center;
+            min-height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .plot-image-container img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .plot-image-container .placeholder {
+            color: #999;
+            font-size: 1.1rem;
+        }
+
+        .plot-image-container .loading {
+            color: var(--primary-color);
+        }
+
+        .plot-image-container .error {
+            color: #f14668;
+        }
+
+        .selection-info {
+            background: #e8f4fd;
+            border: 1px solid #b8daff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .selection-info .count {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .btn-clear {
+            background: none;
+            border: 1px solid #f14668;
+            color: #f14668;
+            padding: 0.3rem 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .btn-clear:hover {
+            background: #f14668;
+            color: white;
+        }
+
+        .legend-panel {
+            background: #f8f9fa;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .legend-panel h4 {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--secondary-color);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .task-family-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .task-family-tab {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: #eee;
+            border-radius: 4px 4px 0 0;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .task-family-tab.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .subtask-pills {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .subtask-pill {
+            padding: 0.4rem 0.8rem;
+            border: 2px solid var(--primary-color);
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .subtask-pill.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .subtask-pill:hover:not(.active) {
+            background: #f0f7ff;
+        }
+
+        @media (max-width: 768px) {
+            .control-row {
+                flex-direction: column;
+            }
+            
+            .plots-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="explorer-container">
+        <div class="explorer-header">
+            <h1><i class="fas fa-chart-line"></i> Trajectory Explorer</h1>
+            <p>Explore evolution trajectories across different tasks and models</p>
+        </div>
+
+        <div class="control-panel">
+            <div class="control-row">
+                <!-- Task Family Selection -->
+                <div class="control-group">
+                    <label><i class="fas fa-folder"></i> Task Family</label>
+                    <div class="task-family-tabs" id="taskFamilyTabs">
+                        <button class="task-family-tab active" data-family="tsp">
+                            <i class="fas fa-route"></i> TSP
+                        </button>
+                        <button class="task-family-tab" data-family="sr">
+                            <i class="fas fa-calculator"></i> Symbolic Regression
+                        </button>
+                        <button class="task-family-tab" data-family="heuristic">
+                            <i class="fas fa-boxes"></i> Heuristic Design
+                        </button>
+                        <button class="task-family-tab" data-family="prompt">
+                            <i class="fas fa-comment-dots"></i> Prompt Optimization
+                        </button>
+                    </div>
+                    <label style="margin-top: 0.5rem;"><i class="fas fa-tasks"></i> Subtask</label>
+                    <div class="subtask-pills" id="subtaskPills"></div>
+                </div>
+
+                <!-- View Type Selection -->
+                <div class="control-group" style="max-width: 250px;">
+                    <label><i class="fas fa-eye"></i> View Type</label>
+                    <div class="view-toggle" id="viewToggle">
+                        <button class="active" data-view="empirical">
+                            <i class="fas fa-chart-area"></i> Empirical
+                        </button>
+                        <button data-view="semantic">
+                            <i class="fas fa-project-diagram"></i> Semantic
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="margin: 1.5rem 0;">
+
+            <!-- Model Selection -->
+            <div class="control-group">
+                <label><i class="fas fa-robot"></i> Models (select up to 8)</label>
+                <div class="selection-info">
+                    <span><span class="count" id="selectedCount">0</span> / 8 models selected</span>
+                    <button class="btn-clear" id="clearSelection">Clear All</button>
+                </div>
+                <div class="model-selector" id="modelSelector">
+                    <!-- Models will be populated dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Plots Display -->
+        <div class="plots-container">
+            <div class="plots-grid" id="plotsGrid">
+                <!-- Plots will be populated dynamically -->
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend-panel">
+            <h4><i class="fas fa-info-circle"></i> Legend</h4>
+            <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                <div>
+                    <strong>Empirical View:</strong>
+                    <div class="legend-item">
+                        <span>X-axis: Normalized Fitness (higher = better solution quality)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span>Y-axis: Normalized Diversity (higher = more novel solutions)</span>
+                    </div>
+                </div>
+                <div>
+                    <strong>Semantic View:</strong>
+                    <div class="legend-item">
+                        <span>MDS embedding of solution space (similar solutions are closer)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span>Point size: Fitness (larger = better)</span>
+                    </div>
+                </div>
+                <div>
+                    <strong>Color:</strong>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: linear-gradient(to right, #440154, #21918c, #fde725);"></div>
+                        <span>Generation (dark → light = early → late)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const TASK_FAMILIES = {
+            tsp: { 
+                name: 'Combinatorial Optimization (TSP)', 
+                subtasks: ['TSP30', 'TSP60'] 
+            },
+            sr: { 
+                name: 'Symbolic Regression', 
+                subtasks: ['oscillator1', 'oscillator2'] 
+            },
+            heuristic: { 
+                name: 'Heuristic Design (Bin Packing)', 
+                subtasks: ['OBP-OR3', 'OBP-Weibull'] 
+            },
+            prompt: { 
+                name: 'Prompt Optimization', 
+                subtasks: ['Summarization', 'Simplification'] 
+            }
+        };
+
+        const IMAGE_BASE_PATH = 'images/trajectories';
+
+        // State
+        let state = {
+            taskFamily: 'tsp',
+            subtask: 'TSP30',
+            viewType: 'empirical',
+            selectedModels: [],
+            availableModels: []
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadMetadata();
+            setupEventListeners();
+            updateSubtaskPills();
+            updateModelSelector();
+            updatePlots();
+        });
+
+        // Load metadata from JSON
+        async function loadMetadata() {
+            try {
+                const response = await fetch(`${IMAGE_BASE_PATH}/metadata.json`);
+                if (response.ok) {
+                    const metadata = await response.json();
+                    window.metadataCache = metadata;
+                }
+            } catch (e) {
+                console.log('Metadata not loaded, using fallback');
+                window.metadataCache = null;
+            }
+        }
+
+        // Get available models for current subtask
+        function getModelsForSubtask(subtask) {
+            if (window.metadataCache && window.metadataCache.models[subtask]) {
+                return window.metadataCache.models[subtask];
+            }
+            // Fallback: common model names
+            return [
+                { name: 'gpt-4o', safe_name: 'gpt-4o' },
+                { name: 'gpt-4o-mini', safe_name: 'gpt-4o-mini' },
+                { name: 'claude-3-5-sonnet', safe_name: 'claude-3-5-sonnet' },
+                { name: 'claude-3-5-haiku', safe_name: 'claude-3-5-haiku' },
+                { name: 'gemini-1.5-pro', safe_name: 'gemini-1.5-pro' },
+                { name: 'gemini-1.5-flash', safe_name: 'gemini-1.5-flash' },
+                { name: 'deepseek-chat', safe_name: 'deepseek-chat' },
+                { name: 'qwen2.5-72b', safe_name: 'qwen2.5-72b' },
+                { name: 'llama-3.1-70b', safe_name: 'llama-3.1-70b' },
+                { name: 'llama-3.1-8b', safe_name: 'llama-3.1-8b' },
+                { name: 'mistral-large', safe_name: 'mistral-large' },
+                { name: 'gemma-2-27b', safe_name: 'gemma-2-27b' },
+                { name: 'yi-large', safe_name: 'yi-large' },
+                { name: 'glm-4-plus', safe_name: 'glm-4-plus' },
+                { name: 'ernie-4.0', safe_name: 'ernie-4.0' }
+            ];
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Task family tabs
+            document.querySelectorAll('.task-family-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.task-family-tab').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    state.taskFamily = tab.dataset.family;
+                    state.subtask = TASK_FAMILIES[state.taskFamily].subtasks[0];
+                    state.selectedModels = [];
+                    updateSubtaskPills();
+                    updateModelSelector();
+                    updatePlots();
+                });
+            });
+
+            // View toggle
+            document.querySelectorAll('#viewToggle button').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('#viewToggle button').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    state.viewType = btn.dataset.view;
+                    updatePlots();
+                });
+            });
+
+            // Clear selection
+            document.getElementById('clearSelection').addEventListener('click', () => {
+                state.selectedModels = [];
+                updateModelSelector();
+                updatePlots();
+            });
+        }
+
+        // Update subtask pills
+        function updateSubtaskPills() {
+            const container = document.getElementById('subtaskPills');
+            const subtasks = TASK_FAMILIES[state.taskFamily].subtasks;
+            
+            container.innerHTML = subtasks.map(subtask => `
+                <button class="subtask-pill ${subtask === state.subtask ? 'active' : ''}" 
+                        data-subtask="${subtask}">
+                    ${subtask}
+                </button>
+            `).join('');
+
+            container.querySelectorAll('.subtask-pill').forEach(pill => {
+                pill.addEventListener('click', () => {
+                    state.subtask = pill.dataset.subtask;
+                    state.selectedModels = [];
+                    updateSubtaskPills();
+                    updateModelSelector();
+                    updatePlots();
+                });
+            });
+        }
+
+        // Update model selector
+        function updateModelSelector() {
+            const container = document.getElementById('modelSelector');
+            state.availableModels = getModelsForSubtask(state.subtask);
+            
+            // 按模型名称排序，保持一致的顺序
+            state.availableModels.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+            
+            container.innerHTML = state.availableModels.map(model => {
+                const isSelected = state.selectedModels.includes(model.safe_name);
+                const isDisabled = !isSelected && state.selectedModels.length >= 8;
+                
+                return `
+                    <label class="model-checkbox ${isDisabled ? 'disabled' : ''}">
+                        <input type="checkbox" 
+                               value="${model.safe_name}" 
+                               ${isSelected ? 'checked' : ''} 
+                               ${isDisabled ? 'disabled' : ''}>
+                        <span>${model.name}</span>
+                    </label>
+                `;
+            }).join('');
+
+            container.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', (e) => {
+                    const modelName = e.target.value;
+                    if (e.target.checked) {
+                        if (state.selectedModels.length < 8) {
+                            state.selectedModels.push(modelName);
+                        }
+                    } else {
+                        state.selectedModels = state.selectedModels.filter(m => m !== modelName);
+                    }
+                    updateModelSelector();
+                    updatePlots();
+                });
+            });
+
+            document.getElementById('selectedCount').textContent = state.selectedModels.length;
+        }
+
+        // Update plots display
+        function updatePlots() {
+            const container = document.getElementById('plotsGrid');
+            
+            if (state.selectedModels.length === 0) {
+                container.innerHTML = `
+                    <div class="plot-card" style="grid-column: 1 / -1;">
+                        <div class="plot-image-container">
+                            <div class="placeholder">
+                                <i class="fas fa-hand-pointer" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                                <br>Select models above to view trajectories
+                            </div>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            const viewFolder = state.viewType;
+            const viewLabel = state.viewType === 'empirical' ? 'Fitness vs Diversity' : 'MDS Embedding';
+
+            container.innerHTML = state.selectedModels.map(modelSafeName => {
+                const model = state.availableModels.find(m => m.safe_name === modelSafeName);
+                const modelName = model ? model.name : modelSafeName;
+                const imagePath = `${IMAGE_BASE_PATH}/${viewFolder}/${state.subtask}_${modelSafeName}.png`;
+                
+                return `
+                    <div class="plot-card">
+                        <div class="plot-card-header">
+                            <span>${modelName}</span>
+                            <span class="view-label">${viewLabel}</span>
+                        </div>
+                        <div class="plot-image-container" id="plot-${modelSafeName}">
+                            <div class="loading">
+                                <i class="fas fa-spinner fa-spin"></i> Loading...
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Load images
+            state.selectedModels.forEach(modelSafeName => {
+                const imagePath = `${IMAGE_BASE_PATH}/${viewFolder}/${state.subtask}_${modelSafeName}.png`;
+                const container = document.getElementById(`plot-${modelSafeName}`);
+                
+                const img = new Image();
+                img.onload = () => {
+                    container.innerHTML = '';
+                    container.appendChild(img);
+                };
+                img.onerror = () => {
+                    container.innerHTML = `
+                        <div class="error">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <br>Image not found
+                            <br><small>${state.subtask}_${modelSafeName}.png</small>
+                        </div>
+                    `;
+                };
+                img.src = imagePath;
+                img.alt = `${state.subtask} - ${modelSafeName}`;
+            });
+        }
+    </script>
+</body>
+</html>
