@@ -276,7 +276,7 @@
 <!-- End paper abstract -->
 
 <!-- Method overview -->
-<section class="hero is-small is-light">
+<section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
@@ -299,7 +299,7 @@
 <!-- End method overview -->
 
 <!-- Results -->
-<section class="hero is-small">
+<section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
@@ -312,7 +312,8 @@
             <strong>Fitness performance of LLMs across four task families.</strong> 
             Results show averaged normalized fitness scores across route optimization, prompt optimization, 
             equation discovery, and heuristic design tasks. Models are ranked by their zero-shot performance, 
-            with background shading indicating improvement over initial populations.
+            with background shading indicating improvement over initial populations. The initial populations are manually crafted for each task. 
+For clarification, the Initial Generation here denotes the first generation evolved from these task-specific initial populations.
           </p>
         </div>
       </div>
@@ -322,7 +323,7 @@
 <!-- End results -->
 
 <!-- Zero-shot analysis -->
-<section class="hero is-small is-light">
+<section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
@@ -343,6 +344,30 @@
   </div>
 </section>
 <!-- End zero-shot analysis -->
+
+<!-- Two Perspectives: Refinement and Novelty -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Two Perspectives: Refinement vs. Novelty</h2>
+          <div class="has-text-centered">
+            <img src="static/images/example_refinement_novelty.png" alt="Refinement and Novelty in evolutionary search" style="max-width: 95%; height: auto;">
+          </div>
+          <p class="has-text-justified" style="margin: 0; padding: 1rem 0 0 0; font-size: 1rem; line-height: 1.5;">
+            <strong>Defining Refinement and Novelty.</strong> 
+            Left: Parent population and mutation prompts for prompt optimization (summarization task). 
+            Right: Offspring distribution in 2D novelty/fitness space (Gen 1, Child 1). 
+            <strong>Refinement child:</strong> offspring that exceed the parent best fitness (dotted line).
+            <strong>Novelty:</strong> semantic distance of offspring from parent population.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End two perspectives -->
 
 <!-- Novelty analysis -->
 <section class="hero is-small">
@@ -371,7 +396,7 @@
 <!-- End novelty analysis -->
 
 <!-- Breakthrough rate analysis -->
-<section class="hero is-small is-light">
+<section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
@@ -518,30 +543,38 @@
       
       <!-- Legend -->
       <div class="box" style="margin-top: 1rem; background: #f8f9fa;">
-        <div class="columns">
-          <div class="column is-4">
-            <strong><i class="fas fa-chart-area"></i> Empirical View:</strong>
-            <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
-              <li>X: Normalized Fitness (quality)</li>
-              <li>Y: Normalized Diversity (novelty)</li>
-            </ul>
-          </div>
-          <div class="column is-4">
-            <strong><i class="fas fa-project-diagram"></i> Semantic View:</strong>
-            <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
-              <li>MDS embedding of solution space</li>
-              <li>Point size ∝ Fitness</li>
-            </ul>
-          </div>
-          <div class="column is-4">
-            <strong><i class="fas fa-palette"></i> Color:</strong>
-            <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
-              <div style="width: 100px; height: 15px; background: linear-gradient(to right, #440154, #21918c, #fde725); border-radius: 3px;"></div>
-              <span style="font-size: 0.9rem;">Early → Late generation</span>
-            </div>
-          </div>
-        </div>
+  <div class="columns">
+    <div class="column is-4">
+      <strong><i class="fas fa-chart-area"></i> Empirical View:</strong>
+      <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+        <li>Each point is a candidate solution in <em>metric space</em></li>
+        <li>X: Normalized Fitness (quality)</li>
+        <li>Y: Normalized Diversity (novelty)</li>
+      </ul>
+    </div>
+
+    <div class="column is-4">
+      <strong><i class="fas fa-project-diagram"></i> Semantic View:</strong>
+      <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+        <li>Candidates shown in a 2D <em>MDS representation space</em></li>
+        <li>Distances indicate semantic similarity (closer = more similar)</li>
+        <li>Point size ∝ Fitness</li>
+      </ul>
+    </div>
+
+    <div class="column is-4">
+      <strong><i class="fas fa-exchange-alt"></i> Key Difference:</strong>
+      <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+        <li><strong>Empirical</strong>: answers “how good / how novel” numerically</li>
+        <li><strong>Semantic</strong>: answers “how solutions cluster / drift” geometrically</li>
+      </ul>
+      <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+        <div style="width: 100px; height: 15px; background: linear-gradient(to right, #440154, #21918c, #fde725); border-radius: 3px;"></div>
+        <span style="font-size: 0.9rem;">Generation (early → late)</span>
       </div>
+    </div>
+  </div>
+</div>
     </div>
   </div>
 </section>
