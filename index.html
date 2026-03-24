@@ -351,7 +351,7 @@ For clarification, the Initial Generation here denotes the first generation evol
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column">
-          <h2 class="title is-3">Two Perspectives: Refinement vs. Novelty</h2>
+          <h2 class="title is-3">Two Evaluation Dimensions: Refinement vs. Novelty</h2>
           <div class="has-text-centered">
             <img src="static/images/example_refinement_novelty.png" alt="Refinement and Novelty in evolutionary search" style="max-width: 95%; height: auto;">
           </div>
@@ -405,7 +405,7 @@ For clarification, the Initial Generation here denotes the first generation evol
           <div class="has-text-centered">
             <img src="static/images/average_refinement_rate_per_model.png" alt="Average local refinement rate per model across different tasks" style="max-width: 85%; height: auto;">
           </div>
-          <p class="has-text-justified" style="margin: 0; padding: 1rem 0 0 0; font-size: 1rem; line-height: 1.5;">
+          <p class="has-text-justified" style="margin: 0; padding: 2rem 0 0 0; font-size: 1rem; line-height: 1.5;">
             <strong>Refinement rate across LLMs and task families.</strong> 
             This indicator measures the frequency with which a model produces an offspring that is strictly better than its parent.
             Regression analysis reveals that average refinement rate is by far the strongest predictor of final performance 
@@ -428,13 +428,12 @@ For clarification, the Initial Generation here denotes the first generation evol
         <div class="column">
           <h2 class="title is-3">Geometric Perspective: Distinct Semantic Search Behaviors</h2>
           <div class="publication-video">
-            <video poster="" id="tsp-evolution" controls loop height="100%">
+            <video poster="" id="tsp-evolution" controls loop height="120%">
               <source src="static/videos/tsp_evolution_simple.mp4" type="video/mp4">
             </video>
-            <p class="has-text-justified" style="margin: 0; padding: 0.2rem 0 0 0; font-size: 1rem; line-height: 1.4;">
+            <p class="has-text-justified" style="margin: 0; padding: 0.2rem 0 0 0; font-size: 1rem; line-height: 1.5;">
               <strong>Different optimization trajectories for two LLMs with similar zero-shot performance on TSP-60.</strong> 
-              Each point represents a candidate solution, colored by generation. Gemini-1.5-Pro (left) displays sustained fitness 
-              improvement and progressive localization. Mistral-7B-Instruct (right) maintains high novelty but fails to 
+              Each point represents a candidate solution, colored by generation. Gemini-1.5-Pro (left) progressively localizes its search into a smaller semantic region. Mistral-7B-Instruct (right) keeps drifting across distant regions and fails to 
               exploit it into fitness gains.
             </p>
           </div>
@@ -962,14 +961,30 @@ def foo(a):
       <h2 class="title is-3 has-text-centered">Poster</h2>
       <div class="columns is-centered">
         <div class="column is-10">
-          <div class="box" style="padding: 0; overflow: hidden;">
-            <iframe src="static/pdfs/poster.pdf" width="100%" height="700" style="border: none;">
-            </iframe>
+          <!-- Compact preview with fixed height -->
+          <div class="box" style="padding: 0; overflow: hidden; margin-bottom: 1rem; position: relative;">
+            <div style="height: 500px; width: 100%; overflow: hidden;">
+              <iframe 
+                src="static/pdfs/poster_v6.pdf" 
+                width="100%" 
+                height="600px" 
+                style="border: none; display: block; transform: scale(0.96); transform-origin: top center;"
+                title="Research Poster A0 Preview">
+              </iframe>
+            </div>
+            <!-- Overlay hint -->
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.95)); pointer-events: none;"></div>
           </div>
-          <div class="has-text-centered" style="margin-top: 1rem;">
-            <a href="static/pdfs/poster.pdf" class="button is-link is-outlined" download>
+          
+          <!-- Action buttons -->
+          <div class="has-text-centered" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="static/pdfs/poster_v6.pdf" class="button is-link is-outlined" download>
               <span class="icon"><i class="fas fa-download"></i></span>
-              <span>Download Poster (PDF)</span>
+              <span>Download PDF</span>
+            </a>
+            <a href="static/pdfs/poster_v6.pdf" target="_blank" class="button is-info is-outlined">
+              <span class="icon"><i class="fas fa-external-link-alt"></i></span>
+              <span>Open in New Tab</span>
             </a>
           </div>
         </div>
@@ -977,6 +992,45 @@ def foo(a):
     </div>
   </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const openBtn = document.getElementById('openPosterModal');
+  const closeBtn = document.getElementById('closePosterModal');
+  const modal = document.getElementById('posterModal');
+  const modalBg = document.getElementById('posterModalBg');
+
+  openBtn.addEventListener('click', () => {
+    modal.classList.add('is-active');
+    document.body.style.overflow = 'hidden';
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('is-active');
+    document.body.style.overflow = 'auto';
+  });
+
+  modalBg.addEventListener('click', () => {
+    modal.classList.remove('is-active');
+    document.body.style.overflow = 'auto';
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+      modal.classList.remove('is-active');
+      document.body.style.overflow = 'auto';
+    }
+  });
+});
+</script>
+
+<style>
+  #posterModal {
+    z-index: 1000;
+  }
+</style>
+
 <!--End paper poster -->
 
 
